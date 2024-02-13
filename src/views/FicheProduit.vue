@@ -2,17 +2,25 @@
     <div>
         <h1>Détails produit</h1>
 
-    <div v-if="prodSelect" class="detailsProd">
-        <h2>{{ prodSelect.titre }}</h2>
-        <img :src="prodSelect.image" alt="Produit sélectionné">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere dolorum laborum molestiae maiores iste non veniam error qui. Laudantium eligendi iusto, illo accusamus assumenda molestiae veritatis adipisci quibusdam sed voluptatem.</p>
-        <p>MOQ : {{ prodSelect.moq }}</p>
     
-        <div v-if="online">
-        <p>{{ prodSelect.prix }}</p>
-        <button @click="add(prodSelect)">Ajouter au panier</button>
+    <div v-if="prodSelect" class="detailsProd detailsFlex">
+        
+        <div class="detailsLeft">
+            <div class="details_img">
+                <img :src="prodSelect.image" alt="Produit sélectionné">
+            </div>
         </div>
-  
+        
+        <div class="detailsRight">
+            <h2>{{ prodSelect.titre }}</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere dolorum laborum molestiae maiores iste non veniam error qui. Laudantium eligendi iusto, illo accusamus assumenda molestiae veritatis adipisci quibusdam sed voluptatem.</p>
+            <p>MOQ : {{ prodSelect.moq }}</p>
+            <div v-if="online">
+            <p class="price">{{ prodSelect.prix }}</p>
+            <button @click="add(prodSelect)">Ajouter au panier</button>
+            </div>
+        </div>
+        
    
     </div>
 
@@ -48,32 +56,79 @@ import { mapState } from 'vuex';
   </script>
   
   <style scoped>
+*, ::before, ::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 h1{
-    margin-top: 200px;
+    margin-top: 180px;
 }
 
-.detailProd{
-    border: 2px solid black;
+.detailsProd{
+    max-width: 75%;
+    margin: auto;
+    height: auto;
+    background-color:#cca88c;
+    margin-top: 10px;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
 }
 
-  button {
-      background-color: #b98d68;
-      color: #5e3c1a;
-      border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      margin-bottom: 15px;
-      padding: 5px;
-      width: 150px;
-      height: 40px;
-      border-radius: 20px;
-      border: 1px solid #5e3c1a;
-      cursor: pointer;
-      font-weight: bold;
-  }
-  
-  button:hover {
-    background-color: #5e3c1a;
-    color: #cca88c;
-  }
+.detailsLeft,.detailsRight {
+    width: 50%;
+    padding: 30px;
+}
+
+.detailsFlex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.details_img{
+    width: auto;
+    height: auto;
+}
+
+.detailsRight{
+    padding: 50px 100px 50px 100px;
+
+}
+
+h1,h2{
+    color: #472e16;
+    font-size: 25px;
+    
+}
+
+p{
+    color: #5e3c1a;
+    margin: 20px 0 30px 0;
+    line-height: 25px;
+}
+
+.price{
+    color: #472e16;
+}
+
+
+button {
+    background-color: #b98d68;
+    color: #5e3c1a;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #5e3c1a;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+background-color: #5e3c1a;
+color: #cca88c;
+}
   </style>
